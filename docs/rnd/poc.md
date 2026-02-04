@@ -1,12 +1,20 @@
 # vadocs v0.1.0 - Proof of Concept
 
++++
+
 ## Motivation
+
++++
 
 The `ai_engineering_book` repository contains several validation scripts in `tools/scripts/` that share common patterns: YAML frontmatter parsing, configuration loading, validation error reporting. Each script duplicates parsing logic, and the validation functionality cannot be reused in other repositories.
 
 **Solution**: Extract common validation logic into a reusable Python package (`vadocs`) that can be installed via `uv add`.
 
++++
+
 ## Goal
+
++++
 
 Create a minimal viable package that proves:
 
@@ -15,7 +23,11 @@ Create a minimal viable package that proves:
 3. ADR-specific validation (fields, status, tags, sections)
 4. Configuration loading from YAML files
 
++++
+
 ## Implementation Summary
+
++++
 
 - **Core models**: `Document`, `ValidationError`, `SyncField`, `SyncResult`
 - **Validators**: `FrontmatterValidator`, `AdrValidator`, `AdrTermValidator`
@@ -23,46 +35,71 @@ Create a minimal viable package that proves:
 - **Config**: `load_config()` for YAML files
 - **Tests**: 79 passing
 
++++
+
 ## What's NOT in v0.1.0
+
++++
 
 - CLI interface (library-only)
 - pyproject.toml `[tool.vadocs]` config loading
 - Project scaffolding (`vadocs init`)
 - Index sync validation
 
++++
+
 ## Further Steps
+
++++
 
 - **v0.2.0**: CLI + pyproject.toml config
 - **v0.3.0**: Index sync validation
 - **v0.4.0**: Additional validators (broken links, jupytext)
 - **v1.0.0**: PyPI release, stable API
 
----
++++
 
 ## PoC Validation Checklist
 
++++
+
 Execute each step manually. Mark `[x]` when passed.
+
++++
 
 ### 1. Installation
 
-```bash
++++
+
+```{code-cell}
 cd /path/to/your/project
+uv init
 uv add "vadocs @ git+https://github.com/USERNAME/vadocs.git"
 ```
 
++++
+
 - [ ] **PASS**: Command completes without errors
+
++++
 
 ### 2. Import verification
 
-```bash
++++
+
+```{code-cell}
 uv run python -c "from vadocs import AdrValidator, Document, load_config, parse_frontmatter; print('OK')"
 ```
 
 - [ ] **PASS**: Prints `OK`
 
++++
+
 ### 3. Config loading
 
-```bash
++++
+
+```{code-cell}
 uv run python -c "
 from pathlib import Path
 from vadocs import load_config
@@ -75,11 +112,15 @@ print('required_fields:', config.get('required_fields'))
 - [ ] **PASS**: Prints statuses list (proposed, accepted, etc.)
 - [ ] **PASS**: Prints required_fields list (id, title, date, status, tags)
 
++++
+
 ### 4. Valid ADR produces no errors
+
++++
 
 Pick a known valid ADR file and run:
 
-```bash
+```{code-cell}
 uv run python -c "
 from pathlib import Path
 from vadocs import AdrValidator, Document, load_config, parse_frontmatter
@@ -96,11 +137,16 @@ for e in errors: print(f'  [{e.error_type}] {e.message}')
 
 - [ ] **PASS**: Prints `Errors: 0`
 
++++
+
 ### 5. Missing field detected
+
++++
 
 Create a test file `/tmp/test_adr.md`:
 
-```markdown
+```{code-cell}
+%%markdown
 ---
 id: 99999
 title: Test ADR
@@ -112,7 +158,7 @@ status: accepted
 
 Run validation:
 
-```bash
+```{code-cell}
 uv run python -c "
 from pathlib import Path
 from vadocs import AdrValidator, Document, load_config, parse_frontmatter
@@ -129,11 +175,16 @@ for e in errors: print(f'  [{e.error_type}] {e.message}')
 - [ ] **PASS**: Reports `missing_field` for `date`
 - [ ] **PASS**: Reports `missing_field` for `tags`
 
++++
+
 ### 6. Invalid status detected
+
++++
 
 Create `/tmp/test_adr_status.md`:
 
-```markdown
+```{code-cell}
+%%markdown
 ---
 id: 99999
 title: Test ADR
@@ -147,7 +198,7 @@ tags: [architecture]
 
 Run validation:
 
-```bash
+```{code-cell}
 uv run python -c "
 from pathlib import Path
 from vadocs import AdrValidator, Document, load_config, parse_frontmatter
@@ -162,11 +213,16 @@ for e in errors: print(f'  [{e.error_type}] {e.message}')
 
 - [ ] **PASS**: Reports `invalid_status` error
 
++++
+
 ### 7. Invalid tag detected
+
++++
 
 Create `/tmp/test_adr_tag.md`:
 
-```markdown
+```{code-cell}
+%%markdown
 ---
 id: 99999
 title: Test ADR
@@ -180,7 +236,7 @@ tags: [nonexistent_tag]
 
 Run validation:
 
-```bash
+```{code-cell}
 uv run python -c "
 from pathlib import Path
 from vadocs import AdrValidator, Document, load_config, parse_frontmatter
@@ -195,9 +251,11 @@ for e in errors: print(f'  [{e.error_type}] {e.message}')
 
 - [ ] **PASS**: Reports `invalid_tag` error
 
----
++++
 
 ## Result
+
++++
 
 **Date**: _______________
 

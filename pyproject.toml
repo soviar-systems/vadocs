@@ -3,7 +3,7 @@ name = "vadocs"
 version = "0.1.0"
 description = "Documentation validation engine with YAML frontmatter sync"
 readme = "README.md"
-requires-python = ">=3.11"
+requires-python = ">=3.13"
 license = {text = "MIT"}
 authors = [{name = "Vadim Rudakov"}]
 keywords = ["documentation", "validation", "adr", "frontmatter", "yaml", "rag"]

@@ -42,6 +42,10 @@ uv pip install -e ".[dev]"
 uv run pytest tests/ -v
 ```
 
+```bash
+uv run pytest tests/ --cov=. --cov-report=term-missing -q
+```
+
 ## Step 4: Create initial commit
 
 ```bash
@@ -71,17 +75,33 @@ git remote add origin git@github.com:YOUR_USERNAME/vadocs.git
 git push -u origin main
 ```
 
-## Step 6: Test installation in target project
 
 ```bash
-cd /path/to/your/project
+$ sudo dnf install gh
 
-# Install from GitHub
-uv add "vadocs @ git+https://github.com/YOUR_USERNAME/vadocs.git"
-
-# Verify it works
-uv run python -c "from vadocs import AdrValidator; print('OK')"
+gh auth login
+? Where do you use GitHub? GitHub.com
+? What is your preferred protocol for Git operations on this host? SSH
+? Upload your SSH public key to your GitHub account? /home/username/.ssh/id_github.pub
+? Title for your SSH key: gh_cli
+? How would you like to authenticate GitHub CLI? Paste an authentication token
+Tip: you can generate a Personal Access Token here https://github.com/settings/tokens
+The minimum required scopes are 'repo', 'read:org', 'admin:public_key'.
+? Paste your authentication token: ****************************************
+- gh config set -h github.com git_protocol ssh
+✓ Configured git protocol
+✓ SSH key already existed on your GitHub account: /home/username/.ssh/id_github.pub
+✓ Logged in as username
 ```
+
+
+## Step 6: Test installation in target project
+
+
+Conduct [PoC validation](/docs/poc.ipynb).
+
+Passed.
+
 
 ## Step 7: Clean up original location
 

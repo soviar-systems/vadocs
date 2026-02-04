@@ -88,3 +88,7 @@ result = fixer.fix(doc, config, dry_run=True)
 ## License
 
 MIT
+
+## P.S.
+
+The engine is a spring of the ["AI Engineering Book" Project](https://github.com/lefthand67/ai_engineering_handbook).
