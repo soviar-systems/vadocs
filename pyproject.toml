@@ -19,13 +19,11 @@ classifiers = [
 dependencies = [
     "jupytext>=1.19.1",
     "myst>=1.0.4",
-    "pytest>=9.0.2",
-    "pytest-cov>=7.0.0",
     "pyyaml>=6.0",
 ]
 
 [project.optional-dependencies]
-dev = ["pytest", "pytest-cov"]
+dev = ["pytest>=9.0.2", "pytest-cov>=7.0.0"]
 
 # NO entry points - direct imports only in v0.1.0
 # NO CLI script - library only in v0.1.0
