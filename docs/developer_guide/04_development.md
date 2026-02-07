@@ -51,6 +51,7 @@ uv run pytest tests/ --cov=. --cov-report=term-missing -q
 
 ## Configuration
 
+> See also: [API Reference: Configuration](/docs/api/configuration.md) for `load_config` signature and full config key reference.
 
 Validators and fixers are currently configured via external YAML files loaded by `vadocs.config.load_config`. Future versions will support `pyproject.toml` configuration.
 

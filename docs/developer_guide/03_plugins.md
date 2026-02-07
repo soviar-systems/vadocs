@@ -1,5 +1,7 @@
 # Extending vadocs: Validators and Fixers
 
+> See also: [API Reference: Validators](/docs/api/validators.md) and [Fixers](/docs/api/fixers.md) for complete signatures, config keys, and error types.
+
 `vadocs` uses a plugin architecture based on Abstract Base Classes (ABC) and Protocols for "duck typing" support.
 
 ## Creating a Validator

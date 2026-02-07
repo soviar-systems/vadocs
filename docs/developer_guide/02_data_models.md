@@ -1,5 +1,7 @@
 # Core Data Models
 
+> See also: [API Reference: Models](/docs/api/models.md) for complete attribute types and constructor signatures.
+
 The system uses Python dataclasses (defined in `src/vadocs/core/models.py`) to maintain state and communicate results.
 
 ## Document

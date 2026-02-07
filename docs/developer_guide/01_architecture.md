@@ -14,3 +14,5 @@ The package follows a three-step workflow:
 - `src/vadocs/validators/`: Plugin-based validation rules.
 - `src/vadocs/fixers/`: Logic for automated document corrections and bi-directional sync.
 - `src/vadocs/config.py`: Minimal YAML configuration loader.
+
+> See also: [API Reference](/docs/api/index.md) for complete signatures and parameter details.
