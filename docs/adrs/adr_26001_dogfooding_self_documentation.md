@@ -39,7 +39,7 @@ This means that as new validation rules or fixing capabilities are added to the 
 ### Negative / Risks
 
 - **Circular Dependency:** If a breaking change is introduced to the core validation logic, the tool may fail to validate its own documentation. **Mitigation**: Use stable releases for CI validation and editable installs for local development.
-- **Local Setup Overhead:** Developers must install the package in editable mode to run self-validation. **Mitigation**: Document the setup process clearly in the [development guide](/docs/for_developers/04_development.md).
+- **Local Setup Overhead:** Developers must install the package in editable mode to run self-validation. **Mitigation**: Document the setup process clearly in the [development guide](/docs/developer_guide/04_development.md).
 
 ## Alternatives
 
@@ -48,7 +48,7 @@ This means that as new validation rules or fixing capabilities are added to the 
 
 ## References
 
-- [Development Workflow](docs/for_developers/04_development.md)
+- [Development Workflow](/docs/developer_guide/04_development.md)
 
 ## Participants
 
