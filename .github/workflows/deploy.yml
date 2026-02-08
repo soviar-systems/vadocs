@@ -32,7 +32,7 @@ jobs:
           enable-cache: true
 
       - name: Restore Python environment
-        run: uv sync --frozen
+        run: uv sync --frozen --dev
 
       - name: Run tests
         run: uv run pytest
